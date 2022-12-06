@@ -1,8 +1,8 @@
 #ifndef VOXEL_VISUAL_H
 #define VOXEL_VISUAL_H
 
-#include <rviz_voxelgrid_visuals_msgs/VoxelgridStamped.h>
-#include <rviz_voxelgrid_visuals_msgs/SparseVoxelgridStamped.h>
+#include <arm_rviz_msgs/VoxelgridStamped.h>
+#include <arm_rviz_msgs/SparseVoxelgridStamped.h>
 #include <OGRE/OgreSceneManager.h>
 #include <OGRE/OgreSceneNode.h>
 #include <OGRE/OgreVector3.h>
@@ -58,7 +58,7 @@ class DenseVoxelGridVisual : public VoxelGridVisual{
  public:
   using VoxelGridVisual::VoxelGridVisual;
   // Configure the visual to show the data in the message.
-  void setMessage(const rviz_voxelgrid_visuals_msgs::VoxelgridStamped::ConstPtr& msg);
+  void setMessage(const arm_rviz_msgs::VoxelgridStamped::ConstPtr& msg);
 
   void updatePointCloud() override;
 
@@ -67,14 +67,14 @@ class DenseVoxelGridVisual : public VoxelGridVisual{
  protected:
   // A local copy of the message is stored so that the voxelgrid can be
   // regenerated if the user changes the input
-  rviz_voxelgrid_visuals_msgs::VoxelgridStamped latest_msg;
+  arm_rviz_msgs::VoxelgridStamped latest_msg;
 };
 
 class SparseVoxelGridVisual : public VoxelGridVisual{
  public:
   using VoxelGridVisual::VoxelGridVisual;
   // Configure the visual to show the data in the message.
-  void setMessage(const rviz_voxelgrid_visuals_msgs::SparseVoxelgridStamped::ConstPtr& msg);
+  void setMessage(const arm_rviz_msgs::SparseVoxelgridStamped::ConstPtr& msg);
 
   void updatePointCloud() override;
 
@@ -83,7 +83,7 @@ class SparseVoxelGridVisual : public VoxelGridVisual{
  protected:
   // A local copy of the message is stored so that the voxelgrid can be
   // regenerated if the user changes the input
-  rviz_voxelgrid_visuals_msgs::SparseVoxelgridStamped latest_msg;
+  arm_rviz_msgs::SparseVoxelgridStamped latest_msg;
 };
 
 }  // end namespace rviz_voxelgrid_visuals

@@ -5,7 +5,7 @@
     <description>
       Displays a Voxel Grid
     </description>
-    <message_type>rviz_voxelgrid_visuals_msgs/VoxelgridStamped</message_type>
+    <message_type>arm_rviz_msgs/VoxelgridStamped</message_type>
   </class>
   <class name="rviz_voxelgrid_visuals/SparseVoxelGrid"
          type="rviz_voxelgrid_visuals::SparseVoxelGridDisplay"
@@ -13,6 +13,6 @@
     <description>
       Displays a Sparse Voxel Grid
     </description>
-    <message_type>rviz_voxelgrid_visuals_msgs/SparseVoxelgridStamped</message_type>
+    <message_type>arm_rviz_msgs/SparseVoxelgridStamped</message_type>
   </class>
 </library>

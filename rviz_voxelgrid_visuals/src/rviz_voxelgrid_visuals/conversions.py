@@ -1,12 +1,12 @@
-# import rospy
-from rviz_voxelgrid_visuals_msgs.msg import VoxelgridStamped
-from visualization_msgs.msg import Marker, MarkerArray
-from geometry_msgs.msg import Point, Point32
+import numpy as np
+
+from arm_rviz_msgs.msg import VoxelgridStamped
+from geometry_msgs.msg import Point
+from sensor_msgs import point_cloud2
+from sensor_msgs.msg import PointField
 from std_msgs.msg import ColorRGBA, Header
 from std_msgs.msg import Float32MultiArray, MultiArrayDimension
-from sensor_msgs.msg import PointCloud2, PointField
-from sensor_msgs import point_cloud2
-import numpy as np
+from visualization_msgs.msg import Marker
 
 
 def vox_to_float_array(voxel_grid, dim=None):
@@ -65,7 +65,6 @@ def vox_to_pointcloud(voxel_grid, scale=1.0, origin=(0, 0, 0), threshold=0.5, de
                 scaled_pts = np.concatenate([scaled_pts, (np.array(pts) - origin + (x, y, z)) * scale])
 
     return scaled_pts
-    # return (np.array(pts) - origin + 0.5) * scale
 
 
 def vox_to_pointcloud2_msg(voxel_grid, scale=1.0, frame="world", origin=(0, 0, 0), threshold=0.5, density_factor=1):
@@ -81,7 +80,7 @@ def vox_to_pointcloud2_msg(voxel_grid, scale=1.0, frame="world", origin=(0, 0, 0
     return point_cloud2.create_cloud(header, fields, pts)
 
 
-def pointcloud2_msg_to_vox(msg, scale=1.0, frame="world", origin=(0,0,0), shape=(64,64,64)):
+def pointcloud2_msg_to_vox(msg, scale=1.0, frame="world", origin=(0, 0, 0), shape=(64, 64, 64)):
     point_cloud2.read_points(msg, field_names=('x', 'y', 'z'))
     vg = np.zeros(shape)
     for p in point_cloud2.read_points(msg, field_names=('x', 'y', 'z')):

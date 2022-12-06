@@ -5,7 +5,7 @@
 #include <rviz/properties/color_property.h>
 #include <rviz/properties/float_property.h>
 #include <rviz/properties/int_property.h>
-#include <rviz_voxelgrid_visuals_msgs/VoxelgridStamped.h>
+#include <arm_rviz_msgs/VoxelgridStamped.h>
 
 #include <boost/circular_buffer.hpp>
 
@@ -13,7 +13,7 @@
 
 namespace rviz_voxelgrid_visuals {
 
-class VoxelGridDisplay : public rviz::MessageFilterDisplay<rviz_voxelgrid_visuals_msgs::VoxelgridStamped> {
+class VoxelGridDisplay : public rviz::MessageFilterDisplay<arm_rviz_msgs::VoxelgridStamped> {
   Q_OBJECT
  public:
   // Constructor.  pluginlib::ClassLoader creates instances by calling
@@ -38,7 +38,7 @@ class VoxelGridDisplay : public rviz::MessageFilterDisplay<rviz_voxelgrid_visual
 
  private:
   // Function to handle an incoming ROS message.
-  void processMessage(const rviz_voxelgrid_visuals_msgs::VoxelgridStamped::ConstPtr& msg) override;
+  void processMessage(const arm_rviz_msgs::VoxelgridStamped::ConstPtr& msg) override;
 
   // Storage for the list of visuals.  It is a circular buffer where
   // data gets popped from the front (oldest) and pushed to the back (newest)
@@ -52,7 +52,7 @@ class VoxelGridDisplay : public rviz::MessageFilterDisplay<rviz_voxelgrid_visual
   rviz::FloatProperty* cutoff_property_;
 };
 
-class SparseVoxelGridDisplay : public rviz::MessageFilterDisplay<rviz_voxelgrid_visuals_msgs::SparseVoxelgridStamped> {
+class SparseVoxelGridDisplay : public rviz::MessageFilterDisplay<arm_rviz_msgs::SparseVoxelgridStamped> {
  Q_OBJECT
  public:
   // Constructor.  pluginlib::ClassLoader creates instances by calling
@@ -77,7 +77,7 @@ class SparseVoxelGridDisplay : public rviz::MessageFilterDisplay<rviz_voxelgrid_
 
  private:
   // Function to handle an incoming ROS message.
-  void processMessage(const rviz_voxelgrid_visuals_msgs::SparseVoxelgridStamped::ConstPtr& msg) override;
+  void processMessage(const arm_rviz_msgs::SparseVoxelgridStamped::ConstPtr& msg) override;
 
   // Storage for the list of visuals.  It is a circular buffer where
   // data gets popped from the front (oldest) and pushed to the back (newest)

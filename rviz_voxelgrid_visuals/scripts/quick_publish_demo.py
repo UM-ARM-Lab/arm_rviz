@@ -3,12 +3,12 @@ import pickle
 
 import numpy as np
 import rospkg
+from rviz_voxelgrid_visuals import conversions
+
 import rospy
-from rviz_voxelgrid_visuals_msgs.msg import VoxelgridStamped
+from arm_rviz_msgs.msg import VoxelgridStamped
 from sensor_msgs.msg import PointCloud2
 from std_msgs.msg import ColorRGBA
-
-from rviz_voxelgrid_visuals import conversions
 
 """
 This is an example showing how to use the voxelgrid publisher

@@ -66,7 +66,7 @@ void VoxelGridDisplay::updateColorAndAlpha() {
   visual_->updatePointCloud();
 }
 
-void VoxelGridDisplay::processMessage(const rviz_voxelgrid_visuals_msgs::VoxelgridStamped::ConstPtr& msg) {
+void VoxelGridDisplay::processMessage(const arm_rviz_msgs::VoxelgridStamped::ConstPtr& msg) {
   // Here we call the rviz::FrameManager to get the transform from the
   // fixed frame to the frame in the header of this Imu message.  If
   // it fails, we can't do anything else so we return.
@@ -131,7 +131,7 @@ void SparseVoxelGridDisplay::updateColorAndAlpha() {
   visual_->updatePointCloud();
 }
 
-void SparseVoxelGridDisplay::processMessage(const rviz_voxelgrid_visuals_msgs::SparseVoxelgridStamped::ConstPtr& msg) {
+void SparseVoxelGridDisplay::processMessage(const arm_rviz_msgs::SparseVoxelgridStamped::ConstPtr& msg) {
   Ogre::Quaternion orientation;
   Ogre::Vector3 position;
   if (!context_->getFrameManager()->getTransform(msg->header.frame_id, msg->header.stamp, position, orientation)) {

@@ -41,7 +41,7 @@ void VoxelGridVisual::setHidden(bool hidden) { hidden_ = hidden; }
 /*****************************************************************
  * Dense Voxel Grid Visual
  ****************************************************************/
-void DenseVoxelGridVisual::setMessage(const rviz_voxelgrid_visuals_msgs::VoxelgridStamped::ConstPtr& msg) {
+void DenseVoxelGridVisual::setMessage(const arm_rviz_msgs::VoxelgridStamped::ConstPtr& msg) {
   latest_msg = *msg;
   updatePointCloud();
 }
@@ -104,14 +104,14 @@ void DenseVoxelGridVisual::updatePointCloud() {
 }
 
 void DenseVoxelGridVisual::reset() {
-  latest_msg = rviz_voxelgrid_visuals_msgs::VoxelgridStamped();
+  latest_msg = arm_rviz_msgs::VoxelgridStamped();
   VoxelGridVisual::reset();
 }
 
 /*****************************************************************
  * Sparse Voxel Grid Visual
  ****************************************************************/
-void SparseVoxelGridVisual::setMessage(const rviz_voxelgrid_visuals_msgs::SparseVoxelgridStamped::ConstPtr& msg) {
+void SparseVoxelGridVisual::setMessage(const arm_rviz_msgs::SparseVoxelgridStamped::ConstPtr& msg) {
   latest_msg = *msg;
   updatePointCloud();
 }
@@ -152,7 +152,7 @@ void SparseVoxelGridVisual::updatePointCloud() {
 }
 
 void SparseVoxelGridVisual::reset() {
-  latest_msg = rviz_voxelgrid_visuals_msgs::SparseVoxelgridStamped();
+  latest_msg = arm_rviz_msgs::SparseVoxelgridStamped();
   VoxelGridVisual::reset();
 }
 
