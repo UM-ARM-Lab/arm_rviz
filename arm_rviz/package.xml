@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>arm_rviz</name>
+  <version>0.0.0</version>
+  <description>The arm_rviz package</description>
+  <maintainer email="pmitrano@umich.edu">peter</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>arm_rviz_msgs</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>rviz</build_depend>
+  <build_export_depend>arm_rviz_msgs</build_export_depend>
+  <build_export_depend>rospy</build_export_depend>
+  <build_export_depend>rviz</build_export_depend>
+  <exec_depend>arm_rviz_msgs</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>rviz</exec_depend>
+
+  <export>
+    <rviz plugin="${prefix}/rviz_animation_controller_description.xml"/>
+  </export>
+</package>

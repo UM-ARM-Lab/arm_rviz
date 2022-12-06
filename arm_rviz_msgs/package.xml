@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>arm_rviz_msgs</name>
+  <version>0.0.0</version>
+  <description>The arm_rviz_msgs package</description>
+
+  <maintainer email="bradsaund@todo.todo">bradsaund</maintainer>
+  <maintainer email="pmitrano@umich.edu">peter</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
+
+</package>
