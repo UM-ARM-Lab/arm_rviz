@@ -1,7 +1,6 @@
 from time import sleep
 from typing import List, Callable, Any, Optional
 
-import halo
 import numpy as np
 
 import rospy
@@ -191,7 +190,6 @@ class RvizSimpleStepper:
         elif msg.command == AnimationControl.PAUSE:
             self.play = False
 
-    @halo.Halo('click step')
     def step(self):
         while not self.should_step:
             sleep(0.05)
@@ -232,36 +230,3 @@ class RvizAnimation:
                 t_func(self.myobj, example, t)
 
             controller.step()
-
-
-class MultiRvizAnimationController:
-
-    def __init__(self, sub_anims: List[RvizAnimationController]):
-        self.sub_anims = sub_anims
-        self.sub_anims_rev = sub_anims[::-1]
-
-    def t(self):
-        return [c.t() for c in self.sub_anims]
-
-    @property
-    def done(self):
-        return self.sub_anims[0].done
-
-    def step(self):
-        while True:
-            for j, c in enumerate(self.sub_anims_rev):
-                # if c is the highest level anim, we just use False
-                parent_at_last_idx = False
-                if j + 1 < len(self.sub_anims_rev):
-                    parent = self.sub_anims_rev[j + 1]
-                    parent_at_last_idx = parent.idx == parent.max_t
-                if c.done and not parent_at_last_idx:
-                    c.reset()
-                elif c.playing or c.should_step:
-                    if c.playing:
-                        sleep(c.period)
-                    c.update_idx()
-                    c.publish_updated_idx()
-                    return
-
-            sleep(0.1)  # prevent eating CPU

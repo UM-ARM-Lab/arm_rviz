@@ -47,7 +47,6 @@ RVizAnimationController::~RVizAnimationController() {
 void RVizAnimationController::TopicEdited(const QString &text) {
   auto const ns = text.toStdString();
 
-  ROS_ERROR_STREAM("TopicEdited: " << text.toStdString());
   command_pub_ = ros_node_.advertise<arm_rviz_msgs::AnimationControl>(ns + "/control", 10);
 
   auto get_state_bind = [this](arm_rviz_msgs::GetAnimControllerStateRequest &req,
@@ -99,44 +98,58 @@ void RVizAnimationController::MaxTimeCallback(const std_msgs::Int64::ConstPtr &m
 void RVizAnimationController::DoneClicked() {
   arm_rviz_msgs::AnimationControl cmd;
   cmd.command = arm_rviz_msgs::AnimationControl::DONE;
-  command_pub_.publish(cmd);
+  if (command_pub_) {
+    command_pub_->publish(cmd);
+  }
 }
 
 void RVizAnimationController::ForwardClicked() {
   arm_rviz_msgs::AnimationControl cmd;
   cmd.command = arm_rviz_msgs::AnimationControl::STEP_FORWARD;
-  command_pub_.publish(cmd);
+  if (command_pub_) {
+    command_pub_->publish(cmd);
+  }
 }
 
 void RVizAnimationController::BackwardClicked() {
   arm_rviz_msgs::AnimationControl cmd;
   cmd.command = arm_rviz_msgs::AnimationControl::STEP_BACKWARD;
-  command_pub_.publish(cmd);
+  if (command_pub_) {
+    command_pub_->publish(cmd);
+  }
 }
 
 void RVizAnimationController::PauseClicked() {
   arm_rviz_msgs::AnimationControl cmd;
   cmd.command = arm_rviz_msgs::AnimationControl::PAUSE;
-  command_pub_.publish(cmd);
+  if (command_pub_) {
+    command_pub_->publish(cmd);
+  }
 }
 
 void RVizAnimationController::PlayForwardClicked() {
   arm_rviz_msgs::AnimationControl cmd;
   cmd.command = arm_rviz_msgs::AnimationControl::PLAY_FORWARD;
-  command_pub_.publish(cmd);
+  if (command_pub_) {
+    command_pub_->publish(cmd);
+  }
 }
 
 void RVizAnimationController::PlayBackwardClicked() {
   arm_rviz_msgs::AnimationControl cmd;
   cmd.command = arm_rviz_msgs::AnimationControl::PLAY_BACKWARD;
-  command_pub_.publish(cmd);
+  if (command_pub_) {
+    command_pub_->publish(cmd);
+  }
 }
 
 void RVizAnimationController::LoopToggled() {
   arm_rviz_msgs::AnimationControl cmd;
   cmd.state.loop = ui.loop_checkbox->isChecked();
   cmd.command = arm_rviz_msgs::AnimationControl::SET_LOOP;
-  command_pub_.publish(cmd);
+  if (command_pub_) {
+    command_pub_->publish(cmd);
+  }
 
   if (ui.auto_play_checkbox->isChecked()) {
     ROS_WARN_STREAM("Auto-play takes precedence over looping");
@@ -148,14 +161,18 @@ void RVizAnimationController::AutoNextToggled() {
   arm_rviz_msgs::AnimationControl cmd;
   cmd.state.done_after_playing = ui.done_after_playing_checkbox->isChecked();
   cmd.command = arm_rviz_msgs::AnimationControl::SET_DONE_AFTER_PLAYING;
-  command_pub_.publish(cmd);
+  if (command_pub_) {
+    command_pub_->publish(cmd);
+  }
 }
 
 void RVizAnimationController::AutoPlayToggled() {
   arm_rviz_msgs::AnimationControl cmd;
   cmd.state.auto_play = ui.auto_play_checkbox->isChecked();
   cmd.command = arm_rviz_msgs::AnimationControl::SET_AUTO_PLAY;
-  command_pub_.publish(cmd);
+  if (command_pub_) {
+    command_pub_->publish(cmd);
+  }
 
   if (ui.loop_checkbox->isChecked()) {
     ROS_WARN_STREAM("Looping takes precedence over auto-play");
@@ -168,14 +185,18 @@ void RVizAnimationController::StepNumberChanged() {
   arm_rviz_msgs::AnimationControl cmd;
   cmd.state.idx = idx;
   cmd.command = arm_rviz_msgs::AnimationControl::SET_IDX;
-  command_pub_.publish(cmd);
+  if (command_pub_) {
+    command_pub_->publish(cmd);
+  }
 }
 
 void RVizAnimationController::PeriodChanged(double period) {
   arm_rviz_msgs::AnimationControl cmd;
   cmd.state.period = period;
   cmd.command = arm_rviz_msgs::AnimationControl::SET_PERIOD;
-  command_pub_.publish(cmd);
+  if (command_pub_) {
+    command_pub_->publish(cmd);
+  }
 }
 
 void RVizAnimationController::QueueThread() {

@@ -5,6 +5,7 @@
 #include <rviz/panel.h>
 #include <std_msgs/Float32.h>
 #include <std_msgs/Int64.h>
+#include <optional>
 
 #include <QObject>
 #include <QPropertyAnimation>
@@ -64,7 +65,7 @@ class RVizAnimationController : public rviz::Panel {
 
   Ui_MainWidget ui;
   ros::NodeHandle ros_node_;
-  ros::Publisher command_pub_;
+  std::optional<ros::Publisher> command_pub_;
   ros::ServiceServer get_state_srv_;
   ros::Subscriber time_sub_;
   ros::Subscriber max_time_sub_;
