@@ -18,9 +18,11 @@ def main():
 
     marker_pub = rospy.Publisher("visualization_marker", Marker, queue_size=10)
     trajs_viz = RvizAnimationController(n_time_steps=10, ns='trajs')
+    time_viz = RvizAnimationController(n_time_steps=100, ns='time')
+       
     while not trajs_viz.done:
         traj_idx = trajs_viz.t()
-        time_viz = RvizAnimationController(n_time_steps=100, ns='time')
+        time_viz.reset()
         while not time_viz.done:
             t = time_viz.t()
 
